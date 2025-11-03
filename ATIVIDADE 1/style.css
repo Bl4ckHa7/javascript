@@ -1,50 +1,219 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+    --preto-profundo: #0D0D0D;
+    --cinza-grafite: #1F1F1F;
+    --cinza-claro: #CCCCCC;
+    --branco: #FFFFFF;
+    --azul-eletrico: #00AEEF;
+    --azul-neon: #00FFFF;
+
+    --surface-1: rgba(255,255,255,0.03);
+    --surface-2: rgba(255,255,255,0.04);
+    --glass: rgba(255,255,255,0.04);
+    --shadow: 0 8px 30px rgba(0,0,0,0.7);
+    --radius: 14px;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
     margin: 0;
-    padding: 0;
+    font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--cinza-claro);
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(0,174,239,0.03), transparent),
+                            linear-gradient(180deg, var(--preto-profundo) 0%, #0f0f0f 60%, var(--cinza-grafite) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 16px 84px; /* bottom space for fixed footer */
 }
 
-header{
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+/* Header */
+header {
+    width: min(1100px, 96%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    color: var(--branco);
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.03);
 }
 
+header h1 {
+    margin: 0;
+    font-size: 1.05rem;
+    letter-spacing: 0.2px;
+    color: var(--cinza-claro);
+}
+
+header .meta {
+    font-size: 0.9rem;
+    color: rgba(204,204,204,0.85);
+}
+
+/* Clock / relogio */
 div.relogio {
-    font-style: bold;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 18px;
     font-family: 'Courier New', Courier, monospace;
+    color: var(--azul-neon);
+    background: linear-gradient(90deg, rgba(0,174,239,0.06), rgba(0,255,255,0.03));
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,174,239,0.12);
+    box-shadow: 0 6px 18px rgba(0,174,239,0.04), inset 0 -6px 18px rgba(0,0,0,0.35);
 }
 
-section{
-    color: white;
-    background: #1a1a1a;
-    border-radius: 15px;
-    padding: 20px;
-    width: 500px;
-    margin: 20px auto;
-    box-shadow: 5px 5px 15px #000000;
+/* Main content section (card) */
+section {
+    width: min(700px, 96%);
+    max-width: 720px;
+    background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255,255,255,0.03);
+    color: var(--cinza-claro);
     text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    align-items: center;
 }
 
-section div img {
-    display: none;
-    width: 250px;
-    height: 250px;
-    margin:auto;
-    margin-top: 20px;
-    border-radius: 20px;
-    box-shadow: 5px 5px 15px #000000;
+section img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.04);
 }
 
-footer{
-    background-color: #333333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
+/* Content column */
+section .content {
+    text-align: left;
+}
+
+section h2 {
+    margin: 0 0 8px 0;
+    color: var(--branco);
+    font-size: 1.2rem;
+}
+
+section p {
+    margin: 0 0 12px 0;
+    color: rgba(204,204,204,0.95);
+    line-height: 1.45;
+    font-size: 0.98rem;
+}
+
+/* Image column */
+section .media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section .media img {
+    display: block;
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+}
+
+/* Hover / focus interactions */
+section .media img:hover,
+section .media img:focus {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.75);
+}
+
+/* Buttons / links */
+.btn {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 14px;
+    background: linear-gradient(90deg, var(--azul-eletrico), var(--azul-neon));
+    color: #001116;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: transform 150ms, box-shadow 150ms, opacity 150ms;
+    box-shadow: 0 8px 30px rgba(0,174,239,0.12);
+}
+
+.btn.secondary {
+    background: transparent;
+    color: var(--cinza-claro);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: none;
+}
+
+.btn:active { transform: translateY(1px); }
+.btn:hover { box-shadow: 0 12px 40px rgba(0,174,239,0.12); opacity: 0.98; }
+
+/* Footer */
+footer {
     width: 100%;
+    max-width: 100%;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.25));
+    color: rgba(255,255,255,0.9);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(255,255,255,0.03);
+    backdrop-filter: blur(6px);
 }
 
+/* Accessibility: focus outline */
+a:focus, button:focus, input:focus, textarea:focus {
+    outline: 3px solid rgba(0,174,239,0.18);
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 880px) {
+    section {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+    section .media {
+        margin-top: 8px;
+    }
+    section .media img {
+        width: 100%;
+        height: auto;
+        max-height: 360px;
+    }
+}
+
+/* Optionally hide image on very small screens for space */
+@media (max-width: 420px) {
+    section .media { display: none; }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
