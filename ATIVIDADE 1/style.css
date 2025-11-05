@@ -63,7 +63,7 @@ header .meta {
 /* Clock / relogio */
 div.relogio {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 45px;
     font-family: 'Courier New', Courier, monospace;
     color: var(--azul-neon);
     background: linear-gradient(90deg, rgba(0,174,239,0.06), rgba(0,255,255,0.03));
