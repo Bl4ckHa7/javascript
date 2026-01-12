@@ -19,8 +19,8 @@
     <h1>Hello, World!</h1>
     <p>Já me livrei da maldição</p>
     <script>
-       var n1 = Number.parseInt(window.prompt('Digite um numero: '))
-       var n2 = Number.parseInt(window.prompt('Digite outro numero: '))
+       var n1 = Number(window.prompt('Digite um numero: '))
+       var n2 = Number(window.prompt('Digite outro numero: '))
        var s = n1 + n2
 
         //Number.parseInt(n)   -> para numero inteiros
@@ -37,11 +37,10 @@
         //template string só funciona com crase -> ``
         window.alert(`A soma entre ${n1} e ${n2} é igual a ${s}`)
 
-        //template string só funciona com crase -> ``
 
 
-        // + para adição
-        // + para concatenação
+        // (number + number) para adição
+        // (string + string) para concatenação
     </script>
 </body>
 </html>
