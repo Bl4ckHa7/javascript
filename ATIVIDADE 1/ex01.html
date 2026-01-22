@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +8,40 @@
 </head>
 <body>
     <header>
-        <h1>Relogio</h1>
+        <h1>Descendencia</h1>
     </header>
+
     <section>
-        <div class="relogio">
-            Agora são: <span id="hora"></span>:<span id="minuto"></span>:<span id="segundo"></span>
+        <div>
+            <input type="text" name="txtnome" id="txtnome" placeholder="Qual é o seu nome?">
+            <input type="text" name="txtnac" id="txtnac" placeholder="Qual pais você nasceu?">
         </div>
         <div>
-            <img src="Imagens/Manhã.png" alt="">
-            <img src="Imagens/Tarde.png" alt="">
-            <img src="Imagens/Noite.png" alt="">
+            <input type="button" value="verificar" onclick="verificar()">
+            <div id="res">Resposta</div>
         </div>
     </section>
+
     <footer>
         <p>&copy; Desenvolvido por: Black</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        function verificar() {
+            var nome = document.getElementById('txtnome').value;
+            var nac = document.getElementById('txtnac').value;
+            var res = document.getElementById('res');
+
+            res.innerHTML = `<p>Seu nome é <strong>${nome}</strong> e você nasceu em <strong>${nac}</strong>.</p>`;
+
+            if (nac == 'brasil' || nac == 'Brasil' || nac == 'BRASIL') {
+                res.innerHTML += `<p>Você é <strong>BRASILEIRO(A)</strong>!</p>`;
+                
+            } else {
+                res.innerHTML += `<p>Você é <strong>ESTRANGEIRO(A)</strong>!</p>`;
+            }
+
+        }
+    </script>
 </body>
 </html>

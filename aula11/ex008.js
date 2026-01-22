@@ -1,4 +1,4 @@
-var vel = 60.5
+var vel = 60
 console.log(`a velocidade do carro é ${vel} Km/h`)
 
 if (vel > 60) {
