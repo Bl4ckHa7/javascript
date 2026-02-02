@@ -54,12 +54,24 @@
         // Mostra a imagem correta
         if (hora >= 6 && hora < 12) {
             imagens[0].style.display = 'block';
+            
 
         } else if (hora >= 12 && hora < 18) {
             imagens[1].style.display = 'block';
             
+            
         } else {
             imagens[2].style.display = 'block';
+          
+        }
+
+        //Muda a cor da pagina
+        if (hora >= 6 && hora < 12) {
+            document.body.style.backgroundColor = '#87CEEB'; // Azul claro para manhã
+        } else if (hora >= 12 && hora < 18) {
+            document.body.style.backgroundColor = '#FFD700'; // Amarelo para tarde
+        } else {
+            document.body.style.backgroundColor = '#2F4F4F'; // Cinza escuro para noite
         }
         
     }
