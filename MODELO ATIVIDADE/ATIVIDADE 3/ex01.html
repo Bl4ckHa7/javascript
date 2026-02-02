@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de exercicio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Verificador de idade</h1>
+    </header>
+    <section>
+        <div>
+            <h1>Verificador de Idade</h1>
+        </div>
+        <div>
+            <p>Ano de Nascimento: <input type="number" id="anoNascimento"></p>
+            <p>Sexo: <input type="radio" name="sexo" id="masculino"><label for="masculino">Masculino</label>
+                     <input type="radio" name="sexo" id="feminino"><label for="feminino">Feminino</label>
+            </p>
+            <button onclick="verificarIdade()">Verificar</button>
+            <p id="resultado">Prencha os dados acima para o resultado!</p>
+        </div>
+    </section>
+    <script>
+        function verificarIdade() {
+            const anoNascimento = document.getElementById("anoNascimento").value;
+            const masculino = document.getElementById("masculino");
+            const feminino = document.getElementById("feminino");
+
+            if (!anoNascimento) {
+                alert("Por favor, informe o ano de nascimento.");
+                return;
+            }
+
+            const anoAtual = new Date().getFullYear();
+            const idade = anoAtual - anoNascimento;
+
+            let genero = "";
+            if (masculino.checked) {
+                genero = "Masculino";
+            } else if (feminino.checked) {
+                genero = "Feminino";
+            } else {
+                alert("Por favor, selecione o sexo.");
+                return;
+            }
+
+            document.getElementById("resultado").textContent = `Você tem ${idade} anos e é do sexo ${genero}.`;
+
+            //Mostra a imagem correspondente
+            if (genero === "Masculino") {
+                if (idade < 12) {
+                    imgSrc = "Imagens/menino.png";
+                } else if (idade < 20) {
+                    imgSrc = "Imagens/jovem_homem.png";
+                } else if (idade < 60) {
+                    imgSrc = "Imagens/homem_adulto.png";
+                } else {
+                    imgSrc = "Imagens/idoso.png";
+                }
+        
+            } else if (genero === "Feminino") 
+                if (idade < 12) {
+                    imgSrc = "Imagens/menina.png";
+                } else if (idade < 20) {
+                    imgSrc = "Imagens/jovem_mulher.png";
+                } else if (idade < 60) {
+                    imgSrc = "Imagens/mulher_adulta.png";
+                } else {
+                    imgSrc = "Imagens/idosa.png";
+                }
+        }
+    </script>
+    <footer>
+        <p>&copy; Desenvolvido por: Black</p>
+    </footer>
+</body>
+</html>
