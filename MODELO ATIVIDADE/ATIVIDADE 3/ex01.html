@@ -21,6 +21,16 @@
             </p>
             <button onclick="verificarIdade()">Verificar</button>
             <p id="resultado">Prencha os dados acima para o resultado!</p>
+            <p id="imagem">
+                <img src="bebe-H.png" alt="">
+                <img src="jovem-H.png" alt="">
+                <img src="adulto-H.png" alt="">
+                <img src="idoso-H.png" alt="">
+                <img src="bebe-M.png" alt="">
+                <img src="jovem-M.png" alt="">
+                <img src="adulto-M.png" alt="">
+                <img src="idoso-M.png" alt="">
+            </p>
         </div>
     </section>
     <script>
@@ -49,29 +59,47 @@
 
             document.getElementById("resultado").textContent = `Você tem ${idade} anos e é do sexo ${genero}.`;
 
-            //Mostra a imagem correspondente
+            // Mostra a imagem correspondente e centraliza
+            const imagens = document.querySelectorAll('#imagem img');
+            imagens.forEach(img => {
+                img.style.display = 'none';
+                img.style.margin = '';
+            });
+            let imgIndex = -1;
             if (genero === "Masculino") {
-                if (idade < 12) {
-                    imgSrc = "Imagens/menino.png";
-                } else if (idade < 20) {
-                    imgSrc = "Imagens/jovem_homem.png";
-                } else if (idade < 60) {
-                    imgSrc = "Imagens/homem_adulto.png";
+                if (idade >= 0 && idade < 10) {
+                    imgIndex = 0; // Bebê
+                } else if (idade < 21) {
+                    imgIndex = 1; // Jovem
+                } else if (idade < 50) {
+                    imgIndex = 2; // Adulto
                 } else {
-                    imgSrc = "Imagens/idoso.png";
+                    imgIndex = 3; // Idoso
                 }
-        
-            } else if (genero === "Feminino") 
-                if (idade < 12) {
-                    imgSrc = "Imagens/menina.png";
-                } else if (idade < 20) {
-                    imgSrc = "Imagens/jovem_mulher.png";
-                } else if (idade < 60) {
-                    imgSrc = "Imagens/mulher_adulta.png";
+            } else if (genero === "Feminino") {
+                if (idade >= 0 && idade < 10) {
+                    imgIndex = 4; // Bebê
+                } else if (idade < 21) {
+                    imgIndex = 5; // Jovem
+                } else if (idade < 50) {
+                    imgIndex = 6; // Adulto
                 } else {
-                    imgSrc = "Imagens/idosa.png";
+                    imgIndex = 7; // Idoso
                 }
+            }
+            if (imgIndex !== -1) {
+                imagens[imgIndex].style.display = 'block';
+                imagens[imgIndex].style.margin = '0 auto';
+                imagens[imgIndex].style.display = 'block';
+                imagens[imgIndex].style.maxWidth = '200px';
+                imagens[imgIndex].style.borderRadius = '40px'; 
+                // opcional: limita o tamanho
+            }
+            // Centraliza o container da imagem
+            document.getElementById("imagem").style.textAlign = "center";
+           
         }
+        
     </script>
     <footer>
         <p>&copy; Desenvolvido por: Black</p>

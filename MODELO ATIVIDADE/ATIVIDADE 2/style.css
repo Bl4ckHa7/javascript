@@ -22,24 +22,6 @@ section{
 }
 
  /* Adicione este CSS para garantir que funcione */
-        #imagens {
-            position: relative;
-            width: 400px;
-            height: 300px;
-            margin: 20px auto;
-        }
-        
-        #imagens img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50px;
-            display: none; /* IMPORTANTE: todas começam ocultas */
-        }
-        
         #hora {
             color: #00e1ff;
             font-size: 4em;
