@@ -22,12 +22,6 @@ section{
     text-align: center;
 }
 
-section div img {
-    display: none;
-    width: 250px;
-    height: 250px;
-    margin-top: 20px;
-}
 
 footer{
     background-color: #333333;

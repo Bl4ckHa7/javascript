@@ -15,12 +15,17 @@
             <h1>Verificador de Idade</h1>
         </div>
         <div>
-            <p>Ano de Nascimento: <input type="number" id="anoNascimento"></p>
-            <p>Sexo: <input type="radio" name="sexo" id="masculino"><label for="masculino">Masculino</label>
-                     <input type="radio" name="sexo" id="feminino"><label for="feminino">Feminino</label>
+            <p>Ano de Nascimento: 
+                <input type="number" id="anoNascimento"></p>
+            <p>Sexo: 
+                <input type="radio" name="sexo" id="masculino"><label for="masculino">Masculino</label>
+                <input type="radio" name="sexo" id="feminino"><label for="feminino">Feminino</label>
             </p>
+
             <button onclick="verificarIdade()">Verificar</button>
+
             <p id="resultado">Prencha os dados acima para o resultado!</p>
+
             <p id="imagem">
                 <img src="bebe-H.png" alt="">
                 <img src="jovem-H.png" alt="">
@@ -35,70 +40,72 @@
     </section>
     <script>
         function verificarIdade() {
-            const anoNascimento = document.getElementById("anoNascimento").value;
-            const masculino = document.getElementById("masculino");
-            const feminino = document.getElementById("feminino");
+    var anoNascimento = document.getElementById("anoNascimento").value;
+    var masculino = document.getElementById("masculino").checked;
+    var feminino = document.getElementById("feminino").checked;
+    var resultado = document.getElementById("resultado");
+    var imagem = document.querySelectorAll("#imagem img");
+    var dataAtual = new Date();
+    var anoAtual = dataAtual.getFullYear();
+    
+    // Converter para número
+    anoNascimento = parseInt(anoNascimento);
+    
+    // Verificar se é um número válido
+    if (isNaN(anoNascimento) || anoNascimento > anoAtual) {
+        alert("Verifique os dados e tente novamente!");
+        return;
+    }
+    
+    var idade = anoAtual - anoNascimento;
+    var genero = "";
+    var imgSrc = "";
 
-            if (!anoNascimento) {
-                alert("Por favor, informe o ano de nascimento.");
-                return;
-            }
 
-            const anoAtual = new Date().getFullYear();
-            const idade = anoAtual - anoNascimento;
+    if (masculino) {
+        genero = "Homem";
+        if (idade >= 0 && idade < 10) {
+            imagem[0].style.display = 'block';
+            imgSrc = "bebe-H.png";
 
-            let genero = "";
-            if (masculino.checked) {
-                genero = "Masculino";
-            } else if (feminino.checked) {
-                genero = "Feminino";
-            } else {
-                alert("Por favor, selecione o sexo.");
-                return;
-            }
+        } else if (idade < 21) {
+            imagem[1].style.display = 'block';
+            imgSrc = "jovem-H.png";
 
-            document.getElementById("resultado").textContent = `Você tem ${idade} anos e é do sexo ${genero}.`;
+        } else if (idade < 50) {
+            imagem[2].style.display = 'block';
+            imgSrc = "adulto-H.png";
 
-            // Mostra a imagem correspondente e centraliza
-            const imagens = document.querySelectorAll('#imagem img');
-            imagens.forEach(img => {
-                img.style.display = 'none';
-                img.style.margin = '';
-            });
-            let imgIndex = -1;
-            if (genero === "Masculino") {
-                if (idade >= 0 && idade < 10) {
-                    imgIndex = 0; // Bebê
-                } else if (idade < 21) {
-                    imgIndex = 1; // Jovem
-                } else if (idade < 50) {
-                    imgIndex = 2; // Adulto
-                } else {
-                    imgIndex = 3; // Idoso
-                }
-            } else if (genero === "Feminino") {
-                if (idade >= 0 && idade < 10) {
-                    imgIndex = 4; // Bebê
-                } else if (idade < 21) {
-                    imgIndex = 5; // Jovem
-                } else if (idade < 50) {
-                    imgIndex = 6; // Adulto
-                } else {
-                    imgIndex = 7; // Idoso
-                }
-            }
-            if (imgIndex !== -1) {
-                imagens[imgIndex].style.display = 'block';
-                imagens[imgIndex].style.margin = '0 auto';
-                imagens[imgIndex].style.display = 'block';
-                imagens[imgIndex].style.maxWidth = '200px';
-                imagens[imgIndex].style.borderRadius = '40px'; 
-                // opcional: limita o tamanho
-            }
-            // Centraliza o container da imagem
-            document.getElementById("imagem").style.textAlign = "center";
-           
+        } else {
+            imagem[3].style.display = 'block';
+            imgSrc = "idoso-H.png";
         }
+    } else if (feminino) {
+        genero = "Mulher";
+        if (idade >= 0 && idade < 10) {
+            imagem[4].style.display = 'block';
+            imgSrc = "bebe-M.png";
+
+        } else if (idade < 21) {
+            imagem[5].style.display = 'block';
+            imgSrc = "jovem-M.png";
+
+        } else if (idade < 50) {
+            imagem[6].style.display = 'block';
+            imgSrc = "adulto-M.png";
+
+        } else {
+            imagem[7].style.display = 'block';
+            imgSrc = "idoso-M.png";
+        }
+    } else {
+        alert("Por favor, selecione o sexo.");
+        return;
+    }
+
+    resultado.innerHTML = `Detectamos ${genero} com ${idade} anos.`;
+    imagem.innerHTML = `<img src="${imgSrc}" alt="">`;
+}
         
     </script>
     <footer>
