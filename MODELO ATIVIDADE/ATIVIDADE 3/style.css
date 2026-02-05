@@ -33,3 +33,12 @@ footer{
     bottom: 0;
 }
 
+/* Oculta as imagens até que o script determine qual mostrar */
+#imagem img{
+    display: none;
+    max-width: 250px;
+    margin: 10px auto;
+    border-radius: 40px;
+    height: auto;
+}
+
