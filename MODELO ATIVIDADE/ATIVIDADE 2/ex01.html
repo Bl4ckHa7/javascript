@@ -45,10 +45,12 @@
         
         // Primeiro, garante que o CSS está correto
         imagens.forEach(img => {
-            img.style.position = 'absolute';
-            img.style.width = '100%';
-            img.style.height = '100%';
+            img.style.position = 'center';
+            img.style.width = '350x';
+            img.style.height = '350px';
             img.style.display = 'none';
+            img.style.margin = '20px auto';
+            img.style.borderRadius = '40px';
         });
         
         // Mostra a imagem correta
